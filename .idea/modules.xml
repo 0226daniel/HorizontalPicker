@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HorizontalPicker.iml" filepath="$PROJECT_DIR$/HorizontalPicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HorizontalPicker.iml" filepath="$PROJECT_DIR$/HorizontalPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/horizontalpickerlib/horizontalpickerlib.iml" filepath="$PROJECT_DIR$/horizontalpickerlib/horizontalpickerlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/horizontalpickerlib/horizontalpickerlib.iml" filepath="$PROJECT_DIR$/horizontalpickerlib/horizontalpickerlib.iml" />
     </modules>
   </component>
