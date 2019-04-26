@@ -49,26 +49,25 @@ public class PickerLayoutManager extends LinearLayoutManager {
 	@Override
 	public void onScrollStateChanged(int state) {
 		super.onScrollStateChanged(state);
-		View centerView = centerView();
 
-		if (selectedView != centerView) {
-			selectedView = centerView;
-			onScrollStop(selectedView);
+		if (state == 0) {
+			onScrollStop(centerView());
 		}
 	}
 
 	public View centerView() {
 		Log.e("com.kimjisub.log", getChildCount() + "");
 
+		float mid = getWidth() / 2.0f;
 
 		View selected = null;
-		float maxMid = 0f;
+		float min = 1000;
 		for (int i = 0; i < getChildCount(); i++) {
 
 			View child = getChildAt(i);
-			float mid = (getDecoratedLeft(child) + getDecoratedRight(child)) / 2;
-			if (maxMid < mid) {
-				maxMid = mid;
+			float centerValue = Math.abs((getDecoratedLeft(child) + getDecoratedRight(child)) / 2.0f - mid);
+			if (min > centerValue) {
+				min = centerValue;
 				selected = child;
 			}
 		}

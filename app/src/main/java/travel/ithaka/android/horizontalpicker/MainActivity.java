@@ -30,10 +30,13 @@ public class MainActivity extends AppCompatActivity {
 		snapHelper.attachToRecyclerView(rv);
 		rv.setLayoutManager(pickerLayoutManager);
 		rv.setAdapter(adapter);
+		pickerLayoutManager.setOnScrollStopListener(view ->
+				Toast.makeText(MainActivity.this, "Selected value : " + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show()
+		);
 
-		pickerLayoutManager.setOnSelectChangeListener(view -> {
+		/*pickerLayoutManager.setOnSelectChangeListener(view -> {
 			Toast.makeText(MainActivity.this, "Selected value : " + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
-		});
+		});*/
 	}
 
 	public List<String> getData(int count) {
