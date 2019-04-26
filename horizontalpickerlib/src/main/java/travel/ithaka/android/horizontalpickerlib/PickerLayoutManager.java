@@ -11,10 +11,6 @@ import android.view.View;
 
 public class PickerLayoutManager extends LinearLayoutManager {
 
-    private float scaleDownBy = 0.66f;
-    private float scaleDownDistance = 0.9f;
-    private boolean changeAlpha = true;
-
     private onScrollStopListener onScrollStopListener;
 
     public PickerLayoutManager(Context context, int orientation, boolean reverseLayout) {
@@ -38,18 +34,18 @@ public class PickerLayoutManager extends LinearLayoutManager {
     }
 
     private void scaleDownView() {
-        float mid = getWidth() / 2.0f;
-        float unitScaleDownDist = scaleDownDistance * mid;
-        for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            float childMid = (getDecoratedLeft(child) + getDecoratedRight(child)) / 2.0f;
-            float scale = 1.0f + (-1 * scaleDownBy) * (Math.min(unitScaleDownDist, Math.abs(mid - childMid))) / unitScaleDownDist;
-            child.setScaleX(scale);
-            child.setScaleY(scale);
-            if (changeAlpha) {
-                child.setAlpha(scale);
-            }
-        }
+//        float mid = getWidth() / 2;
+//        float unitScaleDownDist = scaleDownDistance * mid;
+//        for (int i = 0; i < getChildCount(); i++) {
+//            View child = getChildAt(i);
+//            float childMid = (getDecoratedLeft(child) + getDecoratedRight(child)) / 2;
+//            /*float scale = 1.0f + (-1 * scaleDownBy) * (Math.min(unitScaleDownDist, Math.abs(mid - childMid))) / unitScaleDownDist;
+//            child.setScaleX(scale);
+//            child.setScaleY(scale);
+//            if (changeAlpha) {
+//                child.setAlpha(scale);
+//            }*/
+//        }
     }
 
     @Override
@@ -70,35 +66,11 @@ public class PickerLayoutManager extends LinearLayoutManager {
         }
     }
 
-    public float getScaleDownBy() {
-        return scaleDownBy;
-    }
-
-    public void setScaleDownBy(float scaleDownBy) {
-        this.scaleDownBy = scaleDownBy;
-    }
-
-    public float getScaleDownDistance() {
-        return scaleDownDistance;
-    }
-
-    public void setScaleDownDistance(float scaleDownDistance) {
-        this.scaleDownDistance = scaleDownDistance;
-    }
-
-    public boolean isChangeAlpha() {
-        return changeAlpha;
-    }
-
-    public void setChangeAlpha(boolean changeAlpha) {
-        this.changeAlpha = changeAlpha;
-    }
-
     public void setOnScrollStopListener(onScrollStopListener onScrollStopListener) {
         this.onScrollStopListener = onScrollStopListener;
     }
 
     public interface onScrollStopListener {
-        public void selectedView(View view);
+        void selectedView(View view);
     }
 }
