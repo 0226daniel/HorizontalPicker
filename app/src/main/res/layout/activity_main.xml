@@ -12,8 +12,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:clipToPadding="false"
-        android:paddingLeft="183dp"
-        android:paddingRight="183dp" />
+        android:paddingLeft="220dp"
+        android:paddingRight="220dp"/>
 
     <View
         android:layout_width="1dp"

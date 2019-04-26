@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
 		rv.setLayoutManager(pickerLayoutManager);
 		rv.setAdapter(adapter);
 
-		pickerLayoutManager.setOnSelectChangeListener(position ->
-				Toast.makeText(MainActivity.this, "Selected value : " + position, Toast.LENGTH_SHORT).show()
-		);
+		pickerLayoutManager.setOnSelectChangeListener(view -> {
+			Toast.makeText(MainActivity.this, "Selected value : " + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
+		});
 	}
 
 	public List<String> getData(int count) {

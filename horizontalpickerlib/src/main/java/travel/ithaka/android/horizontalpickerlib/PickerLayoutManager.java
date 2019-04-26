@@ -3,6 +3,8 @@ package travel.ithaka.android.horizontalpickerlib;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 
 /**
  * Created by adityagohad on 06/06/17.
@@ -12,7 +14,7 @@ public class PickerLayoutManager extends LinearLayoutManager {
 
 	private onSelectChangeListener onSelectChangeListener;
 
-	private int selected = 0;
+	private View selectedView;
 
 	public PickerLayoutManager(Context context, int orientation, boolean reverseLayout) {
 		super(context, orientation, reverseLayout);
@@ -35,11 +37,11 @@ public class PickerLayoutManager extends LinearLayoutManager {
 	}
 
 	private void scrollChange() {
-		int position = checkPosition();
+		View centerView = centerView();
 
-		if (selected != position) {
-			selected = position;
-			onSelectedChange(selected);
+		if (selectedView != centerView) {
+			selectedView = centerView;
+			onSelectedChange(selectedView);
 		}
 	}
 
@@ -48,20 +50,26 @@ public class PickerLayoutManager extends LinearLayoutManager {
 		super.onScrollStateChanged(state);
 	}
 
-	public int checkPosition() {
-		int selected = 0;
-		float lastHeight = 0f;
+	public View centerView() {
+		Log.e("com.kimjisub.log", getChildCount() + "");
+
+
+		View selected = null;
+		float maxMid = 0f;
 		for (int i = 0; i < getChildCount(); i++) {
-			if (lastHeight < getChildAt(i).getScaleY()) {
-				lastHeight = getChildAt(i).getScaleY();
-				selected = i;
+
+			View child = getChildAt(i);
+			float mid = (getDecoratedLeft(child) + getDecoratedRight(child)) / 2;
+			if (maxMid < mid) {
+				maxMid = mid;
+				selected = child;
 			}
 		}
 
 		return selected;
 	}
 
-	private void onSelectedChange(int position) {
+	private void onSelectedChange(View position) {
 		if (onSelectChangeListener != null)
 			onSelectChangeListener.onSelectedChange(position);
 	}
@@ -71,6 +79,6 @@ public class PickerLayoutManager extends LinearLayoutManager {
 	}
 
 	public interface onSelectChangeListener {
-		void onSelectedChange(int position);
+		void onSelectedChange(View view);
 	}
 }
