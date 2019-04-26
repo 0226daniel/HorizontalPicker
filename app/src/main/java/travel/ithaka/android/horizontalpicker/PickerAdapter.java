@@ -40,8 +40,6 @@ public class PickerAdapter extends RecyclerView.Adapter<PickerAdapter.TextVH> {
 		textVH.pickerTxt.setOnClickListener(v -> {
 			if (recyclerView != null) {
 				int width = textVH.pickerTxt.getWidth();
-				r
-
 
 				recyclerView.smoothScrollToPosition(position);
 				recyclerView.smoothScrollBy(width / 2, 0);
