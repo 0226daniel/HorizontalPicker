@@ -13,6 +13,7 @@ import android.view.View;
 public class PickerLayoutManager extends LinearLayoutManager {
 
 	private onSelectChangeListener onSelectChangeListener;
+	private OnScrollStopListener onScrollStopListener;
 
 	private View selectedView;
 
@@ -48,6 +49,12 @@ public class PickerLayoutManager extends LinearLayoutManager {
 	@Override
 	public void onScrollStateChanged(int state) {
 		super.onScrollStateChanged(state);
+		View centerView = centerView();
+
+		if (selectedView != centerView) {
+			selectedView = centerView;
+			onScrollStop(selectedView);
+		}
 	}
 
 	public View centerView() {
@@ -80,5 +87,18 @@ public class PickerLayoutManager extends LinearLayoutManager {
 
 	public interface onSelectChangeListener {
 		void onSelectedChange(View view);
+	}
+
+	private void onScrollStop(View position) {
+		if (onScrollStopListener != null)
+			onScrollStopListener.onScrollStop(position);
+	}
+
+	public void setOnScrollStopListener(OnScrollStopListener onScrollStopListener) {
+		this.onScrollStopListener = onScrollStopListener;
+	}
+
+	public interface OnScrollStopListener {
+		void onScrollStop(View view);
 	}
 }
